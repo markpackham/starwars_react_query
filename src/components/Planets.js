@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Planet from "./Planet";
 import { useQuery } from "react-query";
 
@@ -8,7 +9,8 @@ const fetchPlanets = async (pageNumber) => {
 };
 
 export default function Planets() {
-  const { data, status } = useQuery(["planets", 2], ({ queryKey }) =>
+  const [pageNumber, setPage] = useState(1);
+  const { data, status } = useQuery(["planets", pageNumber], ({ queryKey }) =>
     fetchPlanets(queryKey[1])
   );
 
