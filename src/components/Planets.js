@@ -17,11 +17,10 @@ export default function Planets() {
       {status === "success" && (
         <div>
           {data.results.map((planet) => (
-            <div>{planet.name}</div>
+            <Planet key={planet.name} planet={planet} />
           ))}
         </div>
       )}
-      <Planet />
     </div>
   );
 }
