@@ -3,7 +3,6 @@ import Planet from "./Planet";
 import { useQuery } from "react-query";
 
 const fetchPlanets = async (pageNumber) => {
-  console.log(pageNumber);
   const res = await fetch(`https://swapi.dev/api/planets?page=${pageNumber}`);
   return await res.json();
 };
@@ -20,11 +19,16 @@ export default function Planets() {
       {status === "loading" && <div>Loding data...</div>}
       {status === "error" && <div>Error fetching data</div>}
       {status === "success" && (
-        <div>
-          {data.results.map((planet) => (
-            <Planet key={planet.name} planet={planet} />
-          ))}
-        </div>
+        <>
+          <button onClick={() => setPage(1)}>Page 1</button>
+          <button onClick={() => setPage(2)}>Page 2</button>
+          <button onClick={() => setPage(3)}>Page 3</button>
+          <div>
+            {data.results.map((planet) => (
+              <Planet key={planet.name} planet={planet} />
+            ))}
+          </div>
+        </>
       )}
     </div>
   );
